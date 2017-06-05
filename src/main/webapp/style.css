@@ -1,0 +1,42 @@
+html{
+  margin: 0;
+  height: 100%
+  
+}
+body{
+	margin:0;
+	height:100%;
+	
+}
+/*Rectangle bar class styling*/
+
+.bar1 {
+  fill: red;
+}
+.bar2 {
+	fill:brown;
+}
+
+.bar1:hover {
+  fill: #003366
+}
+.bar2:hover{
+	fill:blue;
+}
+svg{
+	background-color:#c0c0c0;
+}
+.svg2{
+	background-color:blue;
+}
+/*Text class styling*/
+
+.text1 {
+  fill: white;
+  font-family: sans-serif
+}
+
+.text2 {
+  fill: white;
+  font-family: sans-serif
+}
