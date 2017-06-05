@@ -19,61 +19,38 @@
 
 </head>
 <body>
-  <sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost/jsonread" user="root"  password=""/>
+
+
+
+
+<%
+	String user=(String)request.getParameter("user");
+	String pass=(String)request.getParameter("password");
+	String db=(String)request.getParameter("dbname");
+	String dburl="jdbc:mysql://localhost/"+db;
+	out.print(user+pass+db+dburl);
+%>
+ <sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=dburl %>" user="<%=user %>"  password="<%=pass %>"/>
+
  <sql:query var="result" dataSource="${snapshot}" >
-SELECT * from matchtable;
+
+
+select distinct(table_name) from information_schema.columns
+where table_schema = '<%=db %>'
+order by table_name,ordinal_position
+
+
 </sql:query>
  
-<table>
-<tr>
-   <th>NAME</th>
-   <th>MATCH</th>
-   <th>DATE</th>
-   <th>Team 1 Key</th>
-   <th>Team 1 Name</th>
-   <th>Team 1 Code</th>
-   <th>Team 2 Key</th>
-   <th>Team 2 Name</th>
-   <th>Team 2 Code</th>
-   <th>Team 1 Score</th>
-   <th>Team 2 Score</th>
-   
-   
- 
-</tr>
-
+Table Name:<select name="table" id="table">
 <c:forEach var="row" items="${result.rows}">
-<script>
-	name="${row.name}";
-	dateArr.push("${row.date}");
-	score1Arr.push("${row.score1}");
-	score2Arr.push("${row.score2}");
-	tnameArr.push("${row.t1code}");
-	tnameArr.push("${row.t2code}");
-	score.push("${row.score1}");
-	score.push("${row.score2}");
-</script>
-<tr>
-
-   <td><c:out value="${row.name}"/></td>
-   <td><c:out value="${row.matchname}"/></td>
- 	<td><c:out value="${row.date}"/></td>
-   <td><c:out value="${row.t1key}"/></td>
-   <td><c:out value="${row.t1name}"/></td>
-   <td><c:out value="${row.t1code}"/></td>
-   <td><c:out value="${row.t2key}"/></td>
-   <td><c:out value="${row.t2name}"/></td>
-   <td><c:out value="${row.t2code}"/></td>
-   <td><c:out value="${row.score1}"/></td>
-   <td><c:out value="${row.score2}"/></td>
- 
-</tr>
+ <c:out value="<option value=${row.table_name}>${row.table_name}</option>"/>
 </c:forEach>
-</table>
+  
+</select>
 
 <script type="text/javascript" src="axis.js"></script>
 <script type="text/javascript" src="bar.js"></script>
-
-<button type='button' onclick='one()'>click</button>
+ 
 </body>
 </html>

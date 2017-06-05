@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>JSON JSP </title>
+<title>INDEX </title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script type="text/javascript" src="d3.min.js"></script>
 
