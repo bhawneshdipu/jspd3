@@ -13,10 +13,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>JSON JSP </title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="d3.min.js"></script>
 
 <script type="text/javascript" src="test.js"></script>
-
+<script type="text/javascript" src="ajax.js"></script>
 </head>
 <body>
 
@@ -37,15 +38,29 @@
 
 select distinct(table_name) from information_schema.columns
 where table_schema = '<%=db %>'
-order by table_name,ordinal_position
+order by table_name
 
 
 </sql:query>
  
+ 
+ <input type="hidden" value=<%=user %> name="user" id="user">
+ <input type="hidden" value=<%=pass %> name="pass" id="pass">
+ <input type="hidden" value=<%=db %> name="dbname" id="dbname">
+ <input type="hidden" value=<%=dburl %> name="dburl" id="dburl">
+ 
+ 
 Table Name:<select name="table" id="table">
+<option value="">select</option>
 <c:forEach var="row" items="${result.rows}">
- <c:out value="<option value=${row.table_name}>${row.table_name}</option>"/>
+
+
+   <option value='<c:out value="${row.table_name }"></c:out>'><c:out value="${row.table_name}"/></option>
+	
+
+
 </c:forEach>
+
   
 </select>
 
