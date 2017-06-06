@@ -1,4 +1,4 @@
-
+alert("2bar");
 
 
 
@@ -13,9 +13,9 @@ var y = d3.scaleLinear().range([height, 0]);
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-x.domain(tnameArr.map(function(d,i) { return d; }));
+x.domain(col1Arr.map(function(d,i) { return d; }));
 
-y.domain([0, d3.max(score, function (d) {
+y.domain([0, d3.max(col1Arr, function (d) {
     return parseInt(d)+1;
 })])
 .nice();
@@ -60,7 +60,7 @@ svgContainer2.append("g")
   
 //Select, append to SVG, and add attributes to rectangles for bar chart
   svgContainer2.selectAll("rect").filter(".bar1")
-   .data(score1Arr)
+   .data(col1Arr)
    .enter().append("rect")
          .attr("class", "bar1")
          .attr("height", function(d, i) {return (d * 90)})
@@ -70,7 +70,7 @@ svgContainer2.append("g")
 
 
   svgContainer2.selectAll("rect").filter(".bar2")
-  .data(score2Arr)
+  .data(col2Arr)
   .enter().append("rect")
      .attr("class", "bar2")
      .attr("height", function(d, i) {return (d * 90)})
@@ -81,7 +81,7 @@ svgContainer2.append("g")
 
   //Select, append to SVG, and add attributes to text
   svgContainer2.selectAll("text").filter(".text1")
-   .data(score1Arr)
+   .data(col1Arr)
    .enter().append("text")
    .text(function(d) {return d})
           .attr("class", "text1")
@@ -89,7 +89,7 @@ svgContainer2.append("g")
           .attr("y", function(d, i) {return 450 - (d * 90)});
 
   svgContainer2.selectAll("text").filter("text2")
-  .data(score2Arr)
+  .data(col2Arr)
   .enter().append("text")
   .text(function(d) {return d})
       .attr("class", "text2")
@@ -102,4 +102,4 @@ svgContainer2.append("g")
   .attr("y", (40))
   .attr("text-anchor", "middle")  
   .style("font-size", "30px") 
-  .text(name);
+  .text(col1Arr);

@@ -16,7 +16,6 @@
 <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="d3.min.js"></script>
 
-<script type="text/javascript" src="test.js"></script>
 <script type="text/javascript" src="ajax.js"></script>
 </head>
 <body>
@@ -29,7 +28,7 @@
 	String pass=(String)request.getParameter("password");
 	String db=(String)request.getParameter("dbname");
 	String dburl="jdbc:mysql://localhost/"+db;
-	out.print(user+pass+db+dburl);
+	//out.print(user+pass+db+dburl);
 %>
  <sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=dburl %>" user="<%=user %>"  password="<%=pass %>"/>
 
@@ -42,6 +41,8 @@ order by table_name
 
 
 </sql:query>
+
+
  
  
  <input type="hidden" value=<%=user %> name="user" id="user">
@@ -63,9 +64,11 @@ Table Name:<select name="table" id="table">
 
   
 </select>
+<div name="columns" id="columns" ></div>
 
-<script type="text/javascript" src="axis.js"></script>
-<script type="text/javascript" src="bar.js"></script>
- 
+
+<input type="button" id="plot" name="plot" value="Plot">
+<div name="graph_area" id="graph_area"></div>
+
 </body>
 </html>
